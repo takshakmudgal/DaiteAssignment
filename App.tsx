@@ -1,117 +1,95 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+const App = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    <>
+      <View style={styles.container}>
+        <Image
+          source={require('./public/images/logo.png')}
+          style={styles.logo}
+        />
+        <View style={styles.sloganContainer}>
+          <Text style={styles.title}>daite</Text>
+          <Text style={styles.slogan}>
+            Find a soulmate that you ever wanted to find
+          </Text>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.signUpButton}>
+            <Text style={styles.getStarted}>Get Started</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.signInButton}>
+            <Text style={styles.signInText}>I already have an account</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    width: '100%',
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  sloganContainer: {
+    bottom: '-5%',
+    alignItems: 'center',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  buttonContainer: {
+    bottom: '-15%',
+    width: '80%',
+    rowGap: 10,
   },
-  highlight: {
+  logo: {
+    width: 152,
+    height: 152,
+    top: '-10%',
+  },
+  title: {
+    fontSize: 38,
     fontWeight: '700',
+    color: '#FFA737',
+    marginBottom: 10,
+  },
+  slogan: {
+    color: '#080808',
+    fontSize: 16,
+    fontWeight: '500',
+    maxWidth: 250,
+    textAlign: 'center',
+    lineHeight: 24,
+  },
+  signUpButton: {
+    alignItems: 'center',
+    backgroundColor: '#FFA737',
+    paddingVertical: 14,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#D08424',
+    width: '100%',
+  },
+  signInButton: {
+    alignItems: 'center',
+    backgroundColor: '#FFA73730',
+    paddingVertical: 14,
+    borderRadius: 10,
+    width: '100%',
+  },
+  getStarted: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  signInText: {
+    color: '#000000',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 
