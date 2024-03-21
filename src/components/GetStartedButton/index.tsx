@@ -20,7 +20,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({visible, onClose}) => {
     <Modal
       visible={visible}
       transparent={true}
-      animationType="slide"
+      animationType="fade"
       onRequestClose={onClose}>
       <View style={signUpModalStyles.modalContainer}>
         <View style={signUpModalStyles.modalContent}>

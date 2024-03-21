@@ -1,9 +1,46 @@
-import React, {useState} from 'react';
-import {TextInput, Text, StyleSheet} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  Keyboard,
+  View,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 
 const DetailsInput = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+
+  const handleKeyboardDidShow = () => {
+    setKeyboardVisible(true);
+  };
+
+  const handleKeyboardDidHide = () => {
+    setKeyboardVisible(false);
+  };
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      handleKeyboardDidShow,
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      handleKeyboardDidHide,
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
+
+  const combinedButtonContainerStyle = StyleSheet.flatten([
+    styles.buttonContainer,
+    keyboardVisible && styles.buttonContainerKeyboard,
+  ]);
 
   return (
     <>
@@ -17,7 +54,6 @@ const DetailsInput = () => {
         placeholderTextColor="#3B3C4150"
         onChangeText={setFirstName}
         value={firstName}
-        autoCapitalize={'characters'}
       />
       <TextInput
         style={styles.inputField}
@@ -26,6 +62,15 @@ const DetailsInput = () => {
         onChangeText={setLastName}
         value={lastName}
       />
+
+      <View style={[combinedButtonContainerStyle]}>
+        <Text style={styles.privacyText}>
+          All this data will be kept as a secret from all the viewers
+        </Text>
+        <TouchableOpacity style={styles.nextButton}>
+          <Text style={styles.nextButtonText}>Next</Text>
+        </TouchableOpacity>
+      </View>
     </>
   );
 };
@@ -48,6 +93,40 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     backgroundColor: '#F2F2F2',
+  },
+  buttonContainer: {
+    padding: 30,
+    marginBottom: 10,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    position: 'absolute',
+  },
+  buttonContainerKeyboard: {
+    marginBottom: 0,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  nextButton: {
+    backgroundColor: '#FFA737',
+    padding: 15,
+    borderColor: '#D08424',
+    borderWidth: 1,
+    borderRadius: 10,
+  },
+  nextButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  privacyText: {
+    color: '#3B3C4160',
+    fontSize: 12,
+    textAlign: 'center',
+    marginBottom: 10,
   },
 });
 
