@@ -3,6 +3,7 @@ import LogoSection from '../../components/LogoSection';
 import GetStartedButton from '../../components/GetStartedButton';
 import {StyleSheet, View} from 'react-native';
 import SignInButton from '../../components/SignInButton';
+import TOS from '../../components/TOS';
 
 const Login = () => {
   return (
@@ -12,6 +13,7 @@ const Login = () => {
         <GetStartedButton />
         <SignInButton />
       </View>
+      <TOS />
     </>
   );
 };
