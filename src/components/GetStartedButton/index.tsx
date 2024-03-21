@@ -43,9 +43,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({visible, onClose}) => {
               Continue with Apple
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={signUpModalStyles.signUpWithEmailButton}
-            onPress={onClose}>
+          <TouchableOpacity style={signUpModalStyles.signUpWithEmailButton}>
             <Text style={signUpModalStyles.signUpWithEmailButtonText}>
               Sign up with Email
             </Text>
