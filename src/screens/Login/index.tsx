@@ -4,8 +4,12 @@ import GetStartedButton, {SignUpModal} from '../../components/GetStartedButton';
 import {StyleSheet, View} from 'react-native';
 import SignInButton from '../../components/SignInButton';
 import TOS from '../../components/TOS';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../../App';
 
-const Login = () => {
+type LoginProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
+
+const Login = ({navigation}: LoginProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleGetStartedPress = () => {
@@ -18,13 +22,15 @@ const Login = () => {
 
   return (
     <>
-      <LogoSection />
-      <View style={buttonStyles.buttonContainer}>
-        <GetStartedButton onPress={handleGetStartedPress} />
-        <SignInButton />
+      <View style={styles.container}>
+        <LogoSection />
+        <View style={buttonStyles.buttonContainer}>
+          <GetStartedButton onPress={handleGetStartedPress} />
+          <SignInButton onPress={() => navigation.navigate('Details')} />
+        </View>
+        <TOS />
+        <SignUpModal visible={isModalVisible} onClose={handleCloseModal} />
       </View>
-      <TOS />
-      <SignUpModal visible={isModalVisible} onClose={handleCloseModal} />
     </>
   );
 };
@@ -36,4 +42,16 @@ const buttonStyles = StyleSheet.create({
     rowGap: 10,
   },
 });
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
 export default Login;

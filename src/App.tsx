@@ -1,26 +1,35 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from './screens/Login';
+import Details from './screens/Details';
+
+export type RootStackParamList = {
+  Login: undefined;
+  Details: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
     <>
-      <View style={styles.container}>
-        <Login />
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Details"
+            component={Details}
+            options={{headerShown: false}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default App;

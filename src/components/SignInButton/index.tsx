@@ -1,10 +1,17 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  TouchableOpacityProps,
+} from 'react-native';
 
-const SignInButton = () => {
+interface SignInButtonProps extends TouchableOpacityProps {}
+
+const SignInButton: React.FC<SignInButtonProps> = props => {
   return (
     <>
-      <TouchableOpacity style={signInButtonStyles.signInButton}>
+      <TouchableOpacity style={signInButtonStyles.signInButton} {...props}>
         <Text style={signInButtonStyles.signInText}>
           I already have an account
         </Text>
