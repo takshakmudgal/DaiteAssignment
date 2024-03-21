@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     backgroundColor: '#F2F2F2',
+    color: '#3B3C41',
   },
   buttonContainer: {
     padding: 30,
