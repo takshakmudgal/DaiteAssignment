@@ -1,19 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
 import LogoSection from '../../components/LogoSection';
-import GetStartedButton from '../../components/GetStartedButton';
+import GetStartedButton, {SignUpModal} from '../../components/GetStartedButton';
 import {StyleSheet, View} from 'react-native';
 import SignInButton from '../../components/SignInButton';
 import TOS from '../../components/TOS';
 
 const Login = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleGetStartedPress = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <>
       <LogoSection />
       <View style={buttonStyles.buttonContainer}>
-        <GetStartedButton />
+        <GetStartedButton onPress={handleGetStartedPress} />
         <SignInButton />
       </View>
       <TOS />
+      <SignUpModal visible={isModalVisible} onClose={handleCloseModal} />
     </>
   );
 };
