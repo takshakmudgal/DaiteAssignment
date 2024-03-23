@@ -1,3 +1,13 @@
+# Demo of the Project
+
+https://github.com/takshakmudgal/DaiteAssignment/assets/114814639/d4005e18-4848-46f6-ab39-7ddcfa9ddbab
+<div style="display:flex; justify-content:space-around; flex-wrap:wrap;">
+    <img src="https://i.imgur.com/0Sbwdww.png" width="200" />
+    <img src="https://i.imgur.com/ndbeTxT.png" width="200" />
+    <img src="https://i.imgur.com/ix264WV.png" width="200" />
+    <img src="https://i.imgur.com/aORUo2G.png" width="200" />
+</div>
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
